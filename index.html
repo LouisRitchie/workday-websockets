@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Startup Slam - 2016</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <script src="socket.io.js"></script>
+  <script src="FINAL.script.js"></script>
+  <script>
+  let address   = 'http://workday.startupslam.io:8080';
+  let container = document.querySelector('body');
+  let player    = new Player(address, container);
+  player.connect();
+  </script>
+</body>
+</html>

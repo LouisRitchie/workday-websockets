@@ -1,0 +1,73 @@
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  text-shadow: 1px 1px #fff;
+}
+
+/* Audio visualization */
+.graph {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.graph div {
+  flex: 1;
+  transition: height 0.1s;
+  /*background: linear-gradient(to top, rgba(0,0,255,.5), white, rgba(0,0,255,.5));
+  */
+  border: 1px black solid;
+  margin: 0 1px 0 0;
+  /*
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  */
+}
+
+.graph div span {
+  flex: none
+}
+
+/* Playlist */
+.playlist {
+  margin: auto;
+  overflow-y: scroll;
+}
+.playlist button {
+  cursor: pointer;
+  padding: .25em .5em;
+  font-size: 100%;
+  line-height: 1;
+  color: blue;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+.playlist td {
+  padding: .5em 1em;
+}
+.playlist .votes {
+  text-align: center;
+}
+
+/* Current/Next */
+.current {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 200%;
+  margin: 1.5em 0 .25em;
+}
+.next {
+  text-align: center;
+  margin: 0 0 1.5em;
+  color: #777;
+}
+.next:not(:empty)::before {
+  content: 'Next up: ';
+}
