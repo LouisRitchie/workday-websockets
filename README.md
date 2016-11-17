@@ -1,27 +1,20 @@
 #Audio Visualization with WebSockets
+##By Workday
 
-![](https://media.giphy.com/media/j3gsT2RsH9K0w/giphy.gif)
-## Before the Workshop
+Ok, so here's the deal. Workday made this nodejs app that runs in the browser and does audio visualization. 
+It's just a toy example, there's no actual music playing.
+The way it was set up in the workshop was that they had a private client that controlled the server, and then the client
+that each student worked on was built up just to receive and render the audio data.
+Anyways, the point is that this didn't work without their private client. So I'm trying to get this to a point where students can
+download both repositories (server and client) and run both with `npm start` in two terminal windows.
 
-* Install a modern web browser
-  * [Chrome](https://www.google.com/chrome/)
-  * [Firefox](https://www.mozilla.org/en-US/firefox/new/)
-* Get a text editor
-  * Try [Sublime](https://www.sublimetext.com/) or [Atom](https://atom.io/)
-* Download the materials
-  * http://workday.startupslam.io/workshop.zip
+##How to run this thing
 
-## Workshop Instructions
+1. Download both repos with `git clone`. 
+2. Then you need to `git clone https://github.com/arirusso/d3-audio-spectrum` as well.
+3. Open `workday-websockets/index.html` in your web browser.
+4. Run `workday-websockets-server/index.js` with `node index.js` or `nodejs index.js`.
+5. You shoud see stuff in the browser` try clicking the play button then the circle button.
+6. You can now edit the client by modifying `FINAL.script.js` and the stylesheets.
 
-The workshop is broken into 4 parts.  You will be filling in various parts of `script.js` along with everyone.
-
-* `script.js` will be where you perform your work
-* `START.script.js` allows you to reset at any time
-* `FINAL.script.js` is the final result if you need help
-
-The four parts will be:
-
-1. Connecting to socket server and viewing the playlist
-1. Visualizing the audio
-1. Upvoting tracks in the playlist
-1. Now playing and up next
+Have fun.
