@@ -10,12 +10,17 @@ class Player {
       this.nodes[name].className = name;
       container.appendChild(this.nodes[name]);
     }
+
+    this.data = 
+[6, 25, 30, 34, 42, 47, 68, 88, 93, 53, 78, 94, 12, 19, 27, 45, 8, 32, 29, 98, 44, 67, 95, 89, 43, 5, 52, 97, 54, 9, 41, 55, 58, 15, 11, 48, 73, 83, 96, 76]
+
   }
 
   connect() {
     // Connect to the socket
     /* WORKSHOP STEP 1a: Initialize socket connection */
     this.socket = io(this.address);
+    let song = false;
 
     // The playlist is updated when someone votes on a song, when a
     // new song starts (to zero the votes) and when we first connect.
@@ -29,6 +34,8 @@ class Player {
     // This happens very often (once every 50ms plus latency)
     /* WORKSHOP STEP 2a: Attach renderAudioVisualizer method to "audio-update" event */
     this.socket.on('audio-update', (data) => {
+      console.log('audio-update');
+
       this.renderAudioVisualizer(data);
     });
 
@@ -38,9 +45,24 @@ class Player {
     this.socket.on('play-start', (song) => {
       this.renderNowPlaying(song);
     });
+
+    let startButton = document.createElement('button');
+    startButton.innerHTML = '&#x25b6;';
+    startButton.addEventListener('click', () => {
+      this.socket.emit('play-start-private', song);
+    });
+    container.appendChild(startButton);
+
+    let audioUpdateButton = document.createElement('button');
+    audioUpdateButton.innerHTML = '&#x25c9;';     
+    audioUpdateButton.addEventListener('click', () => {
+      this.socket.emit('audio-update-private', this.data);
+    });
+    container.appendChild(audioUpdateButton);
   }
 
   renderAudioVisualizer(data) {
+    console.log("renderAudioVisualizer" + data);
     // Render a bar for each data point
     let i, bar, barHeight, graph = this.nodes.graph;
     for (i = 0; i < data.length; i++) {
@@ -63,6 +85,7 @@ class Player {
   }
 
   renderPlaylist(songs){
+    console.log("renderPlaylist" + songs);
     // Clear out existing songs
     this.nodes.playlist.innerHTML = '';
 
@@ -106,6 +129,7 @@ class Player {
   }
 
   renderNowPlaying(song) {
+    console.log("renderNowPlaying" + song);
     /* WORKSHOP STEP 4b: Set nowPlayingLabel to title and artist of "song" variable */
     let nowPlayingLabel = song.artist + ' - ' + song.title;
     this.nodes.current.innerText = nowPlayingLabel;
